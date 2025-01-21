@@ -1,0 +1,53 @@
+To retrieve an ERC20 token contract address using its name through the CoinGecko API, you need to use the /coins/list endpoint with the include_platform=true parameter, which will return a list of coins including their platform details, allowing you to access the contract address if available for the desired token based on its name; you can then search for the specific token by its name in the response data to find its contract address. 
+
+Key steps: 
+
+• API endpoint: https://api.coingecko.com/api/v3/coins/list?include_platform=true   
+
+• How to use: 
+	• Make an API call to the above endpoint.  
+	• In the response, iterate through the list of coins and find the one with the token name you are looking for.  
+	• Once you find the matching token, access the "contract" field in the response data to retrieve the contract address. 
+
+
+
+Important points to consider: 
+
+• Not all tokens have contract addresses: Some tokens on CoinGecko might not have a listed contract address.  
+• Token ID might be needed: If you want to access more detailed information about a specific token, you may need to use its CoinGecko ID in another API call to get the contract address.  
+
+Example code snippet (using Python with the requests library): 
+import requests
+
+
+
+def get_token_contract_address(token_name):
+
+    url = f"https://api.coingecko.com/api/v3/coins/list?include_platform=true"
+
+    response = requests.get(url)
+
+    data = response.json()
+
+
+
+    for coin in data:
+
+        if coin["name"] == token_name:
+
+            return coin["contract"]  
+
+
+
+    return None  # Token not found
+
+
+
+# Usage
+
+token_name = "Uniswap"
+
+contract_address = get_token_contract_address(token_name)
+
+print(contract_address) 
+
