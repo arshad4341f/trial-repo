@@ -1,0 +1,23 @@
+To retrieve an ERC20 token contract address using its token name through the Etherscan API, you need to use the "tokens" module and the "search" action, providing the token symbol as a parameter in your API request; this will return the contract address associated with the searched token name. 
+
+ Key points:  
+
+    • API endpoint: https://api.etherscan.io/api?module=stats&action=tokensupply&contractaddress=<contract_address>&apikey=<your_api_key>  
+    • Required parameter: symbol (the token symbol you want to search for) 
+
+ Example request: 
+    https://api.etherscan.io/api?module=stats&action=tokensymbol&symbol=ETH&apikey=YOUR_API_KEY
+
+
+Explanation: 
+
+• module=stats: Specifies that you are querying data related to token statistics. 
+• action=tokensymbol: Indicates that you want to search for a token based on its symbol. 
+• symbol=ETH: The token symbol you are searching for (replace with the desired token symbol) 
+• apikey=YOUR_API_KEY: Your Etherscan API key, necessary to make API requests 
+
+Important considerations:   
+
+• API key: You need to obtain an Etherscan API key to use the API.  
+• Token verification: Always double-check the returned contract address to ensure it matches the intended token. 
+• Error handling: Implement proper error handling in your code to manage cases where the token is not found or the API request fails. 
